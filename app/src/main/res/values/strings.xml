@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Nameplate Scanner</string>
+    <string name="take_photo">Сделать фото</string>
+    <string name="analyze">Анализировать</string>
+    <string name="export_excel">Экспорт в Excel</string>
+    <string name="result">Результат</string>
+</resources>
