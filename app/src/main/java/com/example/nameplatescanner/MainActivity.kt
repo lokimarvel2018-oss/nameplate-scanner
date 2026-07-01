@@ -208,9 +208,14 @@ class MainActivity : AppCompatActivity() {
             }
 
             val rowHeader = sheet.createRow(0)
-            rowHeader.createCell(0).setCellValue("Параметр").cellStyle = headerStyle
-            rowHeader.createCell(1).setCellValue("Значение").cellStyle = headerStyle
-
+            val cell0 = rowHeader.createCell(0)
+            cell0.setCellValue("Параметр")
+            cell0.cellStyle = headerStyle
+            
+            val cell1 = rowHeader.createCell(1)
+            cell1.setCellValue("Значение")
+            cell1.cellStyle = headerStyle
+            
             var rowNum = 1
             nameplateData.forEach { (key, value) ->
                 if (key != "raw_text") {
