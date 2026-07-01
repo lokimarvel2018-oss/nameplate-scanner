@@ -9,11 +9,10 @@ android {
 
     defaultConfig {
         applicationId "com.example.nameplatescanner"
-        minSdk 24
+        minSdk 26  // ← ВАЖНО! Было 24, стало 26
         targetSdk 34
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -23,15 +22,28 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    
     buildFeatures {
         viewBinding true
+    }
+    
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/DEPENDENCIES"
+            excludes += "/META-INF/INDEX.LIST"
+            excludes += "/META-INF/LICENSE*"
+            excludes += "/META-INF/NOTICE*"
+        }
     }
 }
 
@@ -51,10 +63,12 @@ dependencies {
     // ML Kit для OCR
     implementation 'com.google.mlkit:text-recognition:16.0.0'
     
-    // Apache POI для Excel
-    implementation 'org.apache.poi:poi-ooxml:5.2.3'
+    // Apache POI для Excel (версия без проблем)
+    implementation('org.apache.poi:poi-ooxml:5.2.3') {
+        exclude group: 'org.apache.logging.log4j'
+    }
     
-    // Glide для работы с изображениями
+    // Glide для изображений
     implementation 'com.github.bumptech.glide:glide:4.16.0'
     
     testImplementation 'junit:junit:4.13.2'
